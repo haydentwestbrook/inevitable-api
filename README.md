@@ -4,6 +4,35 @@ This is a FastAPI-based API project.
 
 ## Setup
 
+### Quick Setup
+
+#### Linux
+
+1. Make the setup script executable:
+```bash
+chmod +x setup/setup.sh
+```
+
+2. Run the setup script:
+```bash
+./setup/setup.sh
+```
+
+#### Windows
+
+1. Open PowerShell as Administrator
+
+2. Run the setup script:
+```powershell
+.\setup\setup.ps1
+```
+
+The setup scripts will install the following system dependencies:
+- Python 3.12
+- Node.js
+- Docker and Docker Compose
+- Vercel CLI
+
 ### Environment Variables
 
 Create a `.env` file in the root directory with the following variables:
@@ -40,7 +69,57 @@ For production, make sure to:
    - Production: `https://your-domain.com/api/v1/auth/google/callback`
 7. Copy the Client ID and Client Secret to your `.env` file
 
-### Local Development
+### Development
+
+#### Using Make Commands
+
+1. Install dependencies and set up environment:
+```bash
+make install
+```
+
+2. Run the development server:
+```bash
+make run
+```
+
+3. Run tests:
+```bash
+# Run all tests
+make test
+
+# Run tests with coverage
+make test-cov
+```
+
+4. Clean up:
+```bash
+make clean
+```
+
+5. Docker commands:
+```bash
+# Build Docker image
+make docker-build
+
+# Run Docker container
+make docker-run
+
+# Stop Docker container
+make docker-stop
+```
+
+6. Deploy to Vercel:
+```bash
+make deploy-vercel
+```
+
+For a list of all available commands:
+```bash
+make help
+```
+
+#### Manual Setup
 
 1. Create a virtual environment:
 ```bash
@@ -70,6 +149,18 @@ uvicorn app.main:app --reload
 The API will be available at http://localhost:8000
 API documentation will be available at http://localhost:8000/docs
 
+### Testing
+
+1. Run all tests:
+```bash
+make test
+```
+
+2. Run tests with coverage:
+```bash
+make test-cov
+```
+
 ### Docker Development
 
 1. Build and start the containers:
@@ -98,12 +189,12 @@ docker-compose logs -f
 
 1. Build the production Docker image:
 ```bash
-docker build -t inevitable-api .
+make docker-build
 ```
 
 2. Run the production container:
 ```bash
-docker run -d -p 8000:8000 --name inevitable-api inevitable-api
+make docker-run
 ```
 
 #### Vercel Deployment
@@ -120,12 +211,7 @@ vercel login
 
 3. Deploy to Vercel:
 ```bash
-vercel
-```
-
-4. For production deployment:
-```bash
-vercel --prod
+make deploy-vercel
 ```
 
 Note: For production deployment, make sure to:

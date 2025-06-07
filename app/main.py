@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
-    title="FastAPI Project",
+    title="Inevitable API",
     description="A FastAPI-based API project",
     version="1.0.0"
 )
@@ -18,7 +18,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to FastAPI"}
+    return {"message": "Welcome to Inevitable API"}
 
 @app.get("/health")
 async def health_check():

@@ -8,6 +8,10 @@ echo "Installing system dependencies..."
 # Update package lists
 sudo apt-get update
 
+# Install Make
+echo "Installing Make..."
+sudo apt-get install -y make
+
 # Install Python 3.12
 echo "Installing Python 3.12..."
 sudo apt-get install -y software-properties-common

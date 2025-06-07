@@ -10,6 +10,16 @@ if (-not $isAdmin) {
     exit 1
 }
 
+# Install Make using Chocolatey
+Write-Host "Installing Make..." -ForegroundColor Green
+if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing Chocolatey package manager..." -ForegroundColor Yellow
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+choco install make -y
+
 # Install Python 3.12
 Write-Host "Installing Python 3.12..." -ForegroundColor Green
 $pythonUrl = "https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe"

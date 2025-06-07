@@ -28,10 +28,13 @@ chmod +x setup/setup.sh
 ```
 
 The setup scripts will install the following system dependencies:
+- Make
 - Python 3.12
 - Node.js
 - Docker and Docker Compose
 - Vercel CLI
+
+Note: The Windows setup script will install Chocolatey package manager if it's not already installed, as it's required for installing Make.
 
 ### Environment Variables
 

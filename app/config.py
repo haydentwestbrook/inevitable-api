@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from typing import Optional
+from pydantic import SecretStr
 
 class Settings(BaseSettings):
     # API Settings
@@ -8,7 +9,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Inevitable API"
     
     # Security
-    SECRET_KEY: str = "your-secret-key-here"  # Change in production!
+    SECRET_KEY: SecretStr  # Required from environment
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     
     # CORS
@@ -16,6 +17,11 @@ class Settings(BaseSettings):
     
     # Database
     DATABASE_URL: Optional[str] = None
+    
+    # Google OAuth
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: SecretStr
+    GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/v1/auth/google/callback"
     
     class Config:
         case_sensitive = True
